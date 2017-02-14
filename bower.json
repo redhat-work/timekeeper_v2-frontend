@@ -1,0 +1,30 @@
+{
+  "name": "timekeeper",
+  "version": "0.0.6",
+  "homepage": "https://github.com/1itvinka/blur-admin",
+  "authors": [
+    "akveo"
+  ],
+  "description": "Blur Admin HTML template",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.5.0-rc.0",
+    "angular-resource": "1.5.0-rc.0",
+    "angular-route": "1.5.0-rc.0",
+    "angular-patternfly": "3.18.1",
+    "patternfly": "3.18.1",
+    "angular-ui-router": "^0.4.2",
+    "angular-local-storage": "^0.5.2"
+  },
+  "resolutions": {
+    "angular": "1.5.0-rc.0"
+  },
+  "overrides": {}
+}
