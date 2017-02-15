@@ -1,54 +1,77 @@
-<h1>Timecards</h1>
+<h1>View timecard</h1>
 
-<!--p ng-controller="show_modal_select_project">
+<div>
 
-    <script type="text/ng-template" id="modal_select_project.html">
-        <div class="modal-header">
-            <h3 class="modal-title">Select a project</h3>
+    <div class="alert alert-warning" ng-show="error_msg != null">
+        <span class="pficon-layered">
+          <span class="pficon pficon-warning-triangle"></span>
+          <span class="pficon pficon-warning-exclamation"></span>
+        </span> 
+            {{error_msg.error}}
+    </div>
+    
+    <div class="alert alert-success" ng-show="saved">
+      <span class="pficon pficon-ok"></span>
+            Timecard was successfully saved.
+    </div>
+
+    <form class="form-horizontal" name="form">
+        <div class="form-group" >
+            <label for="prj_pm" class="col-md-2 control-label">Project</label>
+            <div class="col-md-5">
+                <label>{{timecard.project.name}} - {{timecard.project.initialDate|date:'dd-MMMM-yyyy'}} to {{timecard.project.endDate|date:'dd-MMMM-yyyy'}} - {{days}} days - {{weeks}} weeks</label>
+            </div>
         </div>
-        <form class="form-horizontal" name="form">
-            <div class="modal-body">
-                <div class="form-group" ng-class="{'has-error': form.project.$invalid}">
-                    <label for="prj_pm" class="col-md-2 control-label">Project</label>
-                    <div class="col-lg-6">
-                        <select class="form-control" required name="project" ng-model="timecard.project.id" ng-options="project.id as project.name for project in projects"/>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-default" ng-click="cancel()">Cancel</button>
-                    <button class="btn btn-primary" ng-click="ok(timecard.project.id)" ng-disabled="form.$invalid">Next</button>
+
+        <div class="form-group" >
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr >
+                        <th>Task</th>
+                        <th ng-repeat="item in items">{{item.day |date:"EEE, MMM d, y"}}</th>
+                        <th>Total</th>
+                        <th>Additional Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="task in tasks" >
+                        <td>{{task.name}}</td>
+                        <td ng-repeat="tcDayEntry in task.entries track by $index">{{tcDayEntry}}</td>
+                        <td class="tb-header">{{task.total}}</td>
+                        <td> <button class="btn btn-danger" ng-click="getDetail()">Details</button></td>
+                    </tr>
+                    <tr class="tb-header">
+                        <td></td>
+                        <td ng-repeat="item in items">{{item.hours}}</td>
+                        <td>{{totalHours}}</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div >      
+            <div class="form-group">
+                <label for="prj_desc" class="col-md-2 control-label">Consultant Comment</label>
+                <div class="col-md-3">
+                    <p class="form-control-static">{{timecard.commentConsultant}}</p>
                 </div>
             </div>
-        </form>
-    </script>
+            <div class="form-group">
+                <label for="prj_desc" class="col-md-2 control-label">Project Manager Comment</label>
+                <div class="col-md-3">
+                    <textarea class="form-control" rows="3" cols="50" ng-model="timecard.commentPM" maxlength="512"></textarea>
+                </div>
+            </div>
+            <div class="form-group" ng-if="timecard.status == 4">
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="submit" class="btn btn-primary" ng-click="approve(timecard)">Approve</button>
+                    <button type="submit" class="btn btn-primary" ng-click="reject(timecard)">Reject</button>
+                </div>
+            </div>
+        </div>
+    </form>
 
-    <button class="btn btn-primary" ng-click="select_project()">Add a timecard</button>
-</p-->
-
-<div class="table-responsive" ng-cloak>
-    <div ng-show="loading">Loading..</div>
-    <div class="alert alert-info" ng-show="timecards.length == 0">
-        <span class="pficon pficon-info"></span> There are no timecard to list.<br> {{timecard.msg}}<br>
-    </div>
-    <table class="table table-striped table-bordered table-hover" ng-hide="timecards.length == 0">
-        <thead>
-            <tr>
-                <th>Project</th>
-                <th>Status</th>
-                <th>Period</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="tc in timecards">
-
-                <td style="vertical-align: middle;"><a ng-href="#/timecard-edit/{{tc.id}}">{{tc.project.name}}</a></td>
-                <td style="vertical-align: middle;">{{tc.statusDescription}}</td>
-                <td style="vertical-align: middle;">{{tc.firstDate|date:'dd-MMMM-yyyy'}} to {{tc.lastDate|date:'dd-MMMM-yyyy'}}</td>
-                <td style="vertical-align: middle;">
-                    <a class="btn btn-danger" ng-show="tc.status == 1" ng-click="delete(tc.id)">Delete</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
 </div>
+
+<a class="btn btn-default" ui-sref="timecard-pm.all">Go to main timecard list page.</a>

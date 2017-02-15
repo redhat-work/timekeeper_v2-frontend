@@ -18,8 +18,18 @@
 			return $http.get(url+"/cs/"+id);
 		}
 
+		function getByPM(id){
+			return $http.get(url+"/pm/"+id);
+		}
+
+		function getByID(id){
+			return $http.get(url+"/tc/"+id);
+		}
+
 		return {
 			getByConsultant:getByConsultant,
+			getByPM:getByPM,
+			getByID:getByID
 		};
 	}
 })();

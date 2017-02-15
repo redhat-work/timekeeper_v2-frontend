@@ -12,11 +12,13 @@ app.config(function ($httpProvider, $logProvider) {
 
 	$httpProvider.interceptors.push('AuthInterceptor');
 	$logProvider.debugEnabled(true);
-
+	
 });
 
-app.run(function($rootScope, $state, AuthService, $window,$log) {
+app.run(function($rootScope, $state, AuthService, $window,$log ) {
 	
+	$rootScope.oii="tchau";
+
 	AuthService.login().then(function(){
 
 		console.log("Logou");
@@ -27,7 +29,9 @@ app.run(function($rootScope, $state, AuthService, $window,$log) {
 
 	});
 
-
+	$rootScope.$on('$stateChangeSuccess', function(event, to, toParamams, from, fromParams) {
+		$rootScope.fromState = from;
+	})
 	$rootScope.$on('$stateChangeStart', function(event, next) {
 		/*var authorizedRoles = next.data.authorizedRoles;
 		
