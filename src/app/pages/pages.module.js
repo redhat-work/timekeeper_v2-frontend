@@ -10,7 +10,8 @@
         'timekeeper.pages.consultants',
 		'timekeeper.pages.projects',
 		'timekeeper.pages.timecard-cs',
-		'timekeeper.pages.timecard-pm'
+		'timekeeper.pages.timecard-pm',
+		'timekeeper.pages.organizations'
 	])
 	.config(routeConfig);
 
