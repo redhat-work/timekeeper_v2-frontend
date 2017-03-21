@@ -9,9 +9,21 @@
     .controller("consultant-edit",consultantEdit);
 
     /** @ngInject */
-    function consultantEdit($scope, personService, $stateParams) {
+    function consultantEdit($scope, personService, $stateParams, roleService, organizationService, STATES) {
 
         $scope.person = {};
+
+        $scope.roles = [];
+        roleService.all().then( function(response){
+            $scope.roles = response.data;
+        });
+
+        $scope.organizations = [];
+        organizationService.all().then( function(response){
+            $scope.organizations = response.data;
+        });
+
+        $scope.states = STATES;
 
         if($stateParams.id){
 

@@ -8,9 +8,9 @@
     
     .service('Session', function () {
 
-		this.create = function (id, id_role, email,username,token,name, person_type) {
+		this.create = function (id, role, email,username,token,name, person_type) {
 			this.id = id;
-			this.id_role = id_role;
+			this.role = role;
 			this.email=email;
 			this.username=username;
 			this.token=token;
@@ -20,12 +20,12 @@
 
 		this.destroy = function () {
 			this.id = null;
-			this.id_role = null;
 			this.email= null;
 			this.username= null;
 			this.token= null;
 			this.name= null;
             this.person_type= null;
+			this.role = null;
 		};
 
 	});

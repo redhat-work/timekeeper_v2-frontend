@@ -20,7 +20,7 @@
         <tbody>
             <tr ng-repeat="org in organizations">
                 <td style="vertical-align: middle;">
-                    <a ng-href="#/organization/{{org.id}}">{{org.name}} {{org.enabled === true ? "" : "(DISABLED)"}}</a>
+                    <a ui-sref="organization({id: org.id_org})">{{org.name}} {{org.enabled === true ? "" : "(DISABLED)"}}</a>
                 </td>
                 <td style="vertical-align: middle;">
                     <a class="btn btn-default" ng-show="org.enabled" ng-click="disable(org.id)">Disable</a>

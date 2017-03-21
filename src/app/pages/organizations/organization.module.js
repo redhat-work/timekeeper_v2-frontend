@@ -19,15 +19,16 @@
             controller: 'organizationsCtrl'
         });
 
-      /*  $stateProvider
-            .state('organization', {
-            url: '/organization/:id',
-            templateUrl: 'app/pages/organizations/organization-edit/condultant-edit.html',
-            title: 'organizations',
-            controller: 'organization-edit'
-        });
 
         $stateProvider
+            .state('organization', {
+            url: '/organization/:id',
+            templateUrl: 'app/pages/organizations/organization-view/organization-view.html',
+            title: 'organizations',
+            controller: 'organizationsViewCtrl'
+        });
+
+        /*$stateProvider
             .state('organizationnew', {
             url: '/organization-new',
             templateUrl: 'app/pages/organizations/organization-new/condultant-new.html',

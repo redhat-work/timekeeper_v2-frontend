@@ -1,5 +1,5 @@
 /**
- * @author v.lugovsky
+ * @author Vitor Silva Lima
  * created on 16.12.2015
  */
 (function () {
@@ -9,11 +9,11 @@
     .controller("projects-cs",projects);
 
     /** @ngInject */
-    function projects($scope, projectService) {
+    function projects($scope, projectService, Session) {
 
         $scope.projects = [];
 
-        projectService.getByConsultant(3).then(function(response){
+        projectService.getByConsultant(Session.id).then(function(response){
 
             $scope.projects = response.data;
 

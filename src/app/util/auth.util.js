@@ -18,12 +18,10 @@
 
 			var deferred = $q.defer();
 			var s = localStorageService.get("session");
-
 			if(s){
-
 				Session.create(
-                    s.id,
-                    s.id_role,
+                    s.id_person,
+                    s['role.short_name'],
                     s.email,
                     s.username,
                     s.token,
@@ -33,13 +31,17 @@
 				deferred.resolve();
 
 			}else{
-
 				deferred.reject();
-
 			}
 
 			return deferred.promise;
 		};
+
+		authService.logout = function () {
+			Session.destroy();
+			localStorageService.remove('session');
+			window.location.href = '/auth.html';
+		}
 		/**
 		 * Checks if the user is authenticated by
 		 * checking if the session has been saved

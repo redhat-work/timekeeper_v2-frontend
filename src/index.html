@@ -16,7 +16,7 @@
 <link rel="stylesheet" href="bower_components/patternfly/dist/css/patternfly-additions.min.css">
 
 </head>
-<body ng-controller="teste">
+<body ng-controller="mainCtrl">
     <nav class="navbar navbar-default navbar-pf" role="navigation">
       <div class="navbar-header">
         <a class="navbar-brand" href="/">
@@ -26,16 +26,14 @@
       <div class="collapse navbar-collapse navbar-collapse-1" >
 
         <ul class="nav navbar-nav navbar-primary">
-          <li><a ui-sref="consultants">Consultants</a></li>
-          <li><a href="#/dashboard" ng-show="role(['redhat_manager', 'admin'])">Dashboard</a></li>
-          <li><a ui-sref="organizations">Organization</a></li>
-          <li><a href="#/projects" ng-show="role(['redhat_manager', 'admin'])">Project</a></li>
-          <li><a ui-sref="projects.consultants">Project</a></li>
+          <li><a ui-sref="consultants" ng-show="::checkRole(['redhat_manager', 'admin'])">Consultants</a></li>
+          <li><a href="#/dashboard" ng-show="::checkRole(['redhat_manager', 'admin'])">Dashboard</a></li>
+          <li><a ui-sref="organizations" ng-show="::checkRole(['partner_manager'])">Organization</a></li>
+          <li><a href="#/projects" ng-show="::checkRole(['redhat_manager', 'admin'])">Project</a></li>
+          <li><a ui-sref="projects.consultants" ng-show="::checkRole(['partner_consultant'])">Project</a></li>
           <!--li><a href="#/projects-cs" ng-show="role(['partner_consultant'])">Project</a></li-->
-          <li><a ui-sref="timecard-cs.view">Timecard CS</a></li>
-          <li><a ui-sref="timecard-pm.all">Timecard PM</a></li>
-          <li><a href="#/timecards-partner" ng-show="role(['partner_manager'])">Timecard</a></li>
-          <li><a href="#/timecards-cs" ng-show="role(['partner_consultant'])">Timecard</a></li>
+          <li><a ui-sref="timecard-cs.view" ng-show="::checkRole(['partner_consultant'])">Timecard</a></li>
+          <li><a ui-sref="timecard-pm.all" ng-show="::checkRole(['partner_manager'])">Timecard PM</a></li>
           <li><a href="#/profile/{{user.id}}">{{user.name}}</a></li>
           <li><a href="#/" ng-click="logout()">Logout</a></li>
 

@@ -24,7 +24,9 @@
 
     <button class="btn btn-primary" ng-click="select_project()">Add a timecard</button>
 </p-->
-
+<p>
+    <button class="btn btn-primary" ng-click="select_project()">Add a timecard</button>
+</p>
 <div class="table-responsive" ng-cloak>
     <div ng-show="loading">Loading..</div>
     <div class="alert alert-info" ng-show="timecards.length == 0">
@@ -42,9 +44,9 @@
         <tbody>
             <tr ng-repeat="tc in timecards">
 
-                <td style="vertical-align: middle;"><a ng-href="#/timecard-edit/{{tc.id}}">{{tc.project.name}}</a></td>
-                <td style="vertical-align: middle;">{{tc.statusDescription}}</td>
-                <td style="vertical-align: middle;">{{tc.firstDate|date:'dd-MMMM-yyyy'}} to {{tc.lastDate|date:'dd-MMMM-yyyy'}}</td>
+                <td style="vertical-align: middle;"><a ng-href="#/timecard-edit/{{tc.id_timecard}}">{{::tc.project.name}}</a></td>
+                <td style="vertical-align: middle;">{{ ::(status | findById:tc.status).description }}</td>
+                <td style="vertical-align: middle;">{{tc.timecard_entries[0].day |date:'dd-MMMM-yyyy'}} to {{ tc.timecard_entries[tc.timecard_entries.length-1].day | date:'dd-MMMM-yyyy'}}</td>
                 <td style="vertical-align: middle;">
                     <a class="btn btn-danger" ng-show="tc.status == 1" ng-click="delete(tc.id)">Delete</a>
                 </td>

@@ -49,7 +49,35 @@ app.run(function($rootScope, $state, AuthService, $window,$log ) {
 	});
 });
 
-app.controller('teste',function($scope){
-	$scope.oi="oi";
+app.filter('findById', function() {
+    return function(input, id) {
+      var i=0, len=input.length;
+      for (; i<len; i++) {
+        if (+input[i].id == +id) {
+          return input[i];
+        }
+      }
+      return null;
+    }
+});
+
+app.controller('mainCtrl',function($scope, Session, AuthService){
+
+	$scope.logout = function(){
+		AuthService.logout();
+	}
+	$scope.role = Session.role;
+	$scope.user = Session;
+
+	$scope.checkRole = function(allowedRoles){
+
+		for(var i=0; i<allowedRoles.length; i++){
+			if(allowedRoles[i].indexOf($scope.role)>-1){
+				return true;
+			}
+		}
+		return false;
+	}
+
 });
 

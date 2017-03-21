@@ -1,0 +1,17 @@
+<div class="modal-header">
+    <h3 class="modal-title">Select a project</h3>
+</div>
+<form class="form-horizontal" name="form">
+    <div class="modal-body">
+        <div class="form-group" ng-class="{'has-error': form.project.$invalid}">
+            <label for="prj_pm" class="col-md-2 control-label">Project</label>
+            <div class="col-lg-6">
+                <select class="form-control" required name="project" ng-model="id" ng-options="project.id_project as project.name for project in projects"/>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-default" ng-click="cancel()">Cancel</button>
+            <button class="btn btn-primary" ng-click="ok(timecard.project.id)" ng-disabled="form.$invalid">Next</button>
+        </div>
+    </div>
+</form>

@@ -115,7 +115,7 @@
         <div class="form-group" ng-class="{'has-error': form.org.$invalid}">
             <label for="prj_name" class="col-md-2 control-label">Organization</label>
             <div class="col-md-2">
-                <select class="form-control" name="org" required ng-model="person.organization.id" ng-options="org.id as org.name for org in orgs">
+                <select class="form-control" name="org" required ng-model="person.id_org" ng-options="org.id_org as org.name for org in organizations">
                 </select>
             </div>
             <div class="col-md-4">

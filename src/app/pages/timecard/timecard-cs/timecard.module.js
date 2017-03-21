@@ -19,7 +19,7 @@
 
         $stateProvider
             .state('timecard-cs.new', {
-            url: '/new',
+            url: '/new/:project_id',
             templateUrl: 'app/pages/timecard/timecard-cs/timecard-cs-new/timecard-cs-new.html',
             controller: 'timecard-cs-new'
         });

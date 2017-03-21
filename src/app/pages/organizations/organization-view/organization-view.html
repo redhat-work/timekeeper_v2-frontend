@@ -1,0 +1,59 @@
+<h1>organizationanization</h1>
+
+<div>
+
+    <div class="alert alert-warning" ng-show="error_msg != null">
+        <span class="pficon-layered">
+          <span class="pficon pficon-warning-triangle"></span>
+          <span class="pficon pficon-warning-exclamation"></span>
+        </span> 
+            {{error_msg.error}}
+    </div>
+    
+    <div class="alert alert-success" ng-show="saved">
+      <span class="pficon pficon-ok"></span>
+            organization {{organization_name}} was successfully saved.
+    </div>
+    
+    
+    <form class="form-horizontal" name="form" ng-show="error_msg == null">
+        <div class="form-group" ng-class="{'has-error': form.name.$invalid}">
+            <label for="prj_name" class="col-md-2 control-label">organization name</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" name="name" required ng-model="organization.name" ng-trim>
+            </div>
+            <div class="col-md-4">
+                <span class="help-block" ng-show="form.name.$error.required">Required field</span>
+            </div>
+        </div>
+        <div class="form-group" >
+            <label class="col-md-2 control-label">Contact name</label>
+            <div class="col-md-2">
+                <input type="text" class="form-control" ng-model="organization.org_contact.name" ng-trim>
+            </div>
+        </div>
+        <div class="form-group" >
+            <label class="col-md-2 control-label">Telephone</label>
+            <div class="col-md-1">
+                <input type="text" ui-mask="(99) 99999999?9" class="form-control" ng-model="organization.org_contact.telephone" ng-trim>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div class="checkbox">
+                    <label> <input type="checkbox" ng-model="organization.enabled"> Enable organization to associate consultants ?
+                    </label>
+                </div>
+            </div>
+        </div>
+    
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" class="btn btn-primary" ng-click="save(organization)">Save</button>
+            </div>
+        </div>
+    </form>
+    
+    
+    <a class="btn btn-default" href="#/organizationanizations">Go to main organization list page.</a>
+</div>

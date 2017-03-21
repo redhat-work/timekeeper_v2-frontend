@@ -9,17 +9,11 @@
     .controller("timecard-cs-new",ctrl);
 
     /** @ngInject */
-    function ctrl($scope, projectService) {
+    function ctrl($scope,  $stateParams) {
 
-        $scope.projects = [];
-
-        projectService.getByConsultant(3).then(function(response){
-
-            $scope.projects = response.data;
-
-        }, function(error){
-
-        });
+        if( $stateParams.project_id){
+            console.log("worked!");
+        }
         
 
     }

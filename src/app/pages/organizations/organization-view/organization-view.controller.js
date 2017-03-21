@@ -1,21 +1,27 @@
 /**
- * @author v.lugovsky
- * created on 16.12.2015
+ * @author vitorsilvalima
+ * created on 19.03.2017
  */
 (function () {
     'use strict';
 
     angular.module('timekeeper.pages.organizations')
-    .controller("organizationsCtrl",organizationsCtrl);
+    .controller("organizationsViewCtrl",organizationsViewCtrl);
 
     /** @ngInject */
-    function organizationsCtrl($scope, organizationService) {
+    function organizationsViewCtrl($scope, organizationService, $stateParams, $log) {
 
-        $scope.organizations = [] ;
-        organizationService.all().then(function(response){
-            $scope.organizations = response.data;
-        })
-        
+        $scope.organization = {} ;
+        if($stateParams.id){
+            $log.debug("Searching for organization id: "+ $stateParams.id);
+            organizationService.byID($stateParams.id).then(function(response){
+                $scope.organization = response.data;
+            })
+        }
+
+        $scope.save = function(organization){
+            console.log(organization);
+        }    
 
     }
 
