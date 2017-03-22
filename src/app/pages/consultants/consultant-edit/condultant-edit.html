@@ -125,7 +125,7 @@
         <div class="form-group" ng-class="{'has-error': form.role.$invalid}">
             <label for="prj_name" class="col-md-2 control-label">Role</label>
             <div class="col-md-2">
-                <select class="form-control" name="role" required ng-model="person.role.id" ng-options="role.id as role.name for role in roles">
+                <select class="form-control" name="role" required ng-model="person.id_role" ng-options="role.id_role as role.name for role in roles">
                 </select>
             </div>
             <div class="col-md-4">
